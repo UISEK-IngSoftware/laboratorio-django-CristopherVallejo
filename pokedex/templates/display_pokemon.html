@@ -9,7 +9,20 @@
             <div class="bg-primary text-white p-4 text-center">
                 <h1>Mi Pokedex</h1>
             </div>
+        <br>
             <p>Has elegido el pokemon: <strong>{{ pokemon | capfirst }}</strong></p>
+            <h3>Caracteristicas </h3>
+            <ul>
+                <li>Tipo: {{ pokemon.type1 | capfirst }}</li>
+                <li>Peso: {{ pokemon.weight }} kg</li>
+                <li>Altura: {{ pokemon.height }} cm</li>
+                <li>Habilidades:
+                    <ul>
+                        {% for ability in pokemon.abilities %}
+                            <li>{{ ability | capfirst }}</li>
+                        {% endfor %}
+                    </ul>
+            </ul>
         </div>
     </body>
 </html>
