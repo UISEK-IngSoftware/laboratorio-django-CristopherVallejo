@@ -1,9 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Formulario  de Pokemon{% endblock title %}
+{% block title %}Formulario de Pokemon{% endblock title %}
 {% block content %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_div }}
+
+    <p>Nombre: {{ form.name }}</p>
+
+    {# Campo Entrenador movido aquí, justo después del Nombre del Pokémon #}
+    <p>Entrenador: {{ form.trainer_name }}</p>
+
+    <p>Tipo: {{ form.type1 }}</p>
+    <p>Peso: {{ form.weight }}</p>
+    <p>Altura: {{ form.height }}</p>
+    <p>Fotografía: {{ form.picture }}</p>
+
     <button type="submit" class="btn btn-primary">Guardar Pokemon</button>
-</form>  
+    <a href="{% url 'pokedex:index' %}" class="btn btn-secondary">Regresar</a>
+</form>
 {% endblock content %}

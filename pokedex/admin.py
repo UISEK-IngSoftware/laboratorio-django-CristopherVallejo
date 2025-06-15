@@ -1,14 +1,7 @@
-# -*- coding: utf-8 -*-
+# pokedex/admin.py
 from django.contrib import admin
+from .models import Pokemon, Trainer # <--- ¡Asegúrate de importar Trainer aquí!
 
-from .models import Pokemon
-
-# Register your models here.
-
- 
-
-@admin.register(Pokemon)
-
-class PokemonAdmin(admin.ModelAdmin):
-
-    pass
+# Registra tus modelos aquí.
+admin.site.register(Pokemon)
+admin.site.register(Trainer) # <--- ¡Añade esta línea para registrar el modelo Trainer!

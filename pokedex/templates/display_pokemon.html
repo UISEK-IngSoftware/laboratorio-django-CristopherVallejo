@@ -1,22 +1,36 @@
 {% extends "base.html" %}
-{% block title %}Listado de Pokemon{% endblock title %}
+{% block title %}Detalles de Pokemon{% endblock title %} 
 {% block content %}
-    
-        <br>
-            <p>Has elegido el pokemon: <strong>{{ pokemon | capfirst }}</strong></p>
-            <h3>Caracteristicas </h3>
-            <ul>
-                <li>Tipo: {{ pokemon.type1 | capfirst }}</li>
-                <li>Peso: {{ pokemon.weight }} kg</li>
-                <li>Altura: {{ pokemon.height }} cm</li>
-                <li>Habilidades:
-                    <ul>
-                        {% for ability in pokemon.abilities %}
-                            <li>{{ ability | capfirst }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-            <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="img-fluid" style="max-width: 350px; height: auto;"/>
-              
+
+    <br>
+        <p>Has elegido el pokemon: <strong>{{ pokemon | capfirst }}</strong></p>
+        <h3>Características </h3> 
+        <ul>
+            <li>Tipo: {{ pokemon.type1 | capfirst }}</li>
+            <li>Peso: {{ pokemon.weight }} kg</li>
+            <li>Altura: {{ pokemon.height }} cm</li>
+            
+            <li>
+                {% if pokemon.trainer %}
+                    Entrenador: {{ pokemon.trainer.name }}
+                {% else %}
+                    Entrenador: Sin entrenador
+                {% endif %}
+            </li>
+            <li>Habilidades:
+                <ul>
+                   
+                    {% for ability in pokemon.abilities %}
+                        <li>{{ ability | capfirst }}</li>
+                    {% empty %} {# Esto es útil si no hay habilidades #}
+                        <li>No hay habilidades registradas.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="img-fluid" style="max-width: 350px; height: auto;"/>
+        <br><br>
+        {# Opcional: Botón para volver al listado #}
+        <a href="{% url 'pokedex:index' %}" class="btn btn-secondary">Volver al listado</a>
+
 {% endblock content %}
