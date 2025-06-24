@@ -43,5 +43,8 @@ class PokemonForm(forms.ModelForm):
                 'id': 'image_field'
             }),
         }
-
+class TrainerForm(forms.ModelForm):
+    class Meta:
+        model = Trainer
+        fields = '__all__'
    
